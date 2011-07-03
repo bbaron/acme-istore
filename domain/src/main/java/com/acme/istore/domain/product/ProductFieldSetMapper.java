@@ -12,10 +12,10 @@ import org.springframework.validation.BindException;
  */
 public class ProductFieldSetMapper implements FieldSetMapper<Product> {
 
-    public static final String FIELD_ID = "ID";
-    public static final String FIELD_NAME = "NAME";
-    public static final String FIELD_DESCRIPTION = "DESCRIPTION";
-    public static final String FIELD_PRICE = "PRICE";
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_NAME = "name";
+    public static final String FIELD_DESCRIPTION = "description";
+    public static final String FIELD_PRICE = "price";
 
     public Product mapFieldSet(FieldSet fieldSet) throws BindException {
         Product product = new Product();

@@ -22,7 +22,7 @@
 		</step>
 	</job>
 	
-	<bean id="decompressTasklet" class="com.manning.sbia.ch01.batch.DecompressTasklet" scope="step">
+	<bean id="decompressTasklet" class="com.acme.batch.commons.tasklets.DecompressTasklet" scope="step">
 		<property name="inputResource" value="#{jobParameters['inputResource']}" />
 		<property name="targetDirectory" value="#{jobParameters['targetDirectory']}" />
 		<property name="targetFile" value="#{jobParameters['targetFile']}" />
