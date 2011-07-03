@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.acme.istore.domain;
+package com.acme.istore.domain.product;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
