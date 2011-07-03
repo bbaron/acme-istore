@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.acme.batch.commons;
+package com.acme.batch.commons.tasklets;
 
 import java.io.File;
 
@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
+
 
 /**
  * @author acogoluegnes

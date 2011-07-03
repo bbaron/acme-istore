@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.acme.batch.commons;
+package com.acme.batch.commons.tasklets;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
