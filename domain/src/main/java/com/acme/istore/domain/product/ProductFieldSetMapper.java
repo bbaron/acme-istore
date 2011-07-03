@@ -12,18 +12,17 @@ import org.springframework.validation.BindException;
  */
 public class ProductFieldSetMapper implements FieldSetMapper<Product> {
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.springframework.batch.item.file.mapping.FieldSetMapper#mapFieldSet
-     * (org.springframework.batch.item.file.transform.FieldSet)
-     */
+    public static final String FIELD_ID = "ID";
+    public static final String FIELD_NAME = "NAME";
+    public static final String FIELD_DESCRIPTION = "DESCRIPTION";
+    public static final String FIELD_PRICE = "PRICE";
+
     public Product mapFieldSet(FieldSet fieldSet) throws BindException {
         Product product = new Product();
-        product.setId(fieldSet.readString("PRODUCT_ID"));
-        product.setName(fieldSet.readString("NAME"));
-        product.setDescription(fieldSet.readString("DESCRIPTION"));
-        product.setPrice(fieldSet.readBigDecimal("PRICE"));
+        product.setId(fieldSet.readString(FIELD_ID));
+        product.setName(fieldSet.readString(FIELD_NAME));
+        product.setDescription(fieldSet.readString(FIELD_DESCRIPTION));
+        product.setPrice(fieldSet.readBigDecimal(FIELD_PRICE));
         return product;
     }
 
