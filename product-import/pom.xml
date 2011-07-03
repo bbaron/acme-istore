@@ -3,12 +3,12 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.acme</groupId>
     <artifactId>istore</artifactId>
+    <groupId>com.acme</groupId>
     <version>1.0.0.SNAPSHOT</version>
   </parent>
-  <artifactId>batch-commons</artifactId>
-  <name>batch-commons</name>
+  <artifactId>product-import</artifactId>
+  <name>product-import</name>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -21,27 +21,5 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-core</artifactId>
-    </dependency>
-      <dependency>
-        <groupId>cglib</groupId>
-        <artifactId>cglib</artifactId>
-      </dependency>
   </dependencies>
-  <properties>
-  </properties>
 </project>

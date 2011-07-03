@@ -29,7 +29,18 @@ public class DecompressTasklet implements Tasklet {
 	
 	private String targetFile;
 	
-	public RepeatStatus execute(StepContribution contribution,
+	public DecompressTasklet(Resource inputResource, String targetDirectory, String targetFile) {
+        super();
+        this.inputResource = inputResource;
+        this.targetDirectory = targetDirectory;
+        this.targetFile = targetFile;
+    }
+
+    public DecompressTasklet() {
+        super();
+    }
+
+    public RepeatStatus execute(StepContribution contribution,
 			ChunkContext chunkContext) throws Exception {
 		ZipInputStream zis = new ZipInputStream(new BufferedInputStream(inputResource.getInputStream()));
 
