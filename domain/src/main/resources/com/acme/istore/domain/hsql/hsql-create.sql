@@ -1,3 +1,4 @@
+drop table if exists product;
 create table product
 (
   id character(9) not null,
