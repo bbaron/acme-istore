@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:batch="http://www.springframework.org/schema/batch"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/batch 
-	http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
-	<job id="importProducts" xmlns="http://www.springframework.org/schema/batch">
-		<step id="decompress" next="readWriteProducts">
-			<tasklet ref="decompressTasklet" />
-		</step>
-		<step id="readWriteProducts">
-			<tasklet>
-				<chunk reader="reader" writer="writer" commit-interval="3" skip-limit="5">
-					<skippable-exception-classes>
-						<include class="org.springframework.batch.item.file.FlatFileParseException" />
-					</skippable-exception-classes>
-				</chunk>
-			</tasklet>			
-		</step>
-	</job>
-	
-	<bean id="decompressTasklet" class="com.acme.batch.commons.tasklets.DecompressTasklet" scope="step">
-		<property name="inputResource" value="#{jobParameters['inputResource']}" />
-		<property name="targetDirectory" value="#{jobParameters['targetDirectory']}" />
-		<property name="targetFile" value="#{jobParameters['targetFile']}" />
-	</bean>
-	
-	<bean id="reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
-		<property name="resource" value="file:#{jobParameters['targetDirectory']+'/'+jobParameters['targetFile']}" />
-		<property name="linesToSkip" value="1" />
-		<property name="lineMapper">
-			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
-				<property name="lineTokenizer">
-					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
-						<property name="names" value="PRODUCT_ID,NAME,DESCRIPTION,PRICE" />
-					</bean>
-				</property>
-				<property name="fieldSetMapper">
-					<bean class="com.acme.istore.domain.product.ProductFieldSetMapper" />
-				</property>
-			</bean>
-		</property>
-	</bean>
-	
-	<bean id="writer" class="com.acme.istore.domain.product.JdbcProductItemWriter">
-      <property name="jdbcTemplate" ref="jdbcTemplate" />
-	</bean>
+  <job id="import-products" xmlns="http://www.springframework.org/schema/batch">
+    <step id="decompress" next="read-write-products">
+      <tasklet ref="decompressTasklet" />
+    </step>
+    <step id="read-write-products">
+      <tasklet>
+        <chunk reader="reader" writer="writer" commit-interval="3" skip-limit="5">
+          <skippable-exception-classes>
+            <include class="org.springframework.batch.item.file.FlatFileParseException" />
+          </skippable-exception-classes>
+        </chunk>
+      </tasklet>
+    </step>
+  </job>
+
+  <bean id="decompressTasklet" class="com.acme.batch.commons.tasklets.DecompressTasklet" scope="step">
+    <property name="inputResource" value="#{jobParameters['inputResource']}" />
+    <property name="targetDirectory" value="#{jobParameters['targetDirectory']}" />
+    <property name="targetFile" value="#{jobParameters['targetFile']}" />
+  </bean>
+
+  <util:constant id="productFields" static-field="com.acme.istore.domain.product.ProductFieldSetMapper.FIELD_LIST" />
+  <bean id="reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+    <property name="resource" value="file:#{jobParameters['targetDirectory']+'/'+jobParameters['targetFile']}" />
+    <property name="linesToSkip" value="1" />
+    <property name="lineMapper">
+      <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <property name="lineTokenizer">
+          <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+            <property name="names" ref="productFields" />
+          </bean>
+        </property>
+        <property name="fieldSetMapper">
+          <bean class="com.acme.istore.domain.product.ProductFieldSetMapper" />
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="writer" class="com.acme.istore.domain.product.JdbcProductItemWriter">
+    <property name="jdbcTemplate" ref="jdbcTemplate" />
+  </bean>
 
 </beans>
