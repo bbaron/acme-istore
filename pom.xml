@@ -6,7 +6,12 @@
   <artifactId>istore</artifactId>
   <version>1.0.0.SNAPSHOT</version>
   <packaging>pom</packaging>
-
+  <url>https://github.com/bbaron/acme-istore</url>
+  <scm>
+    <connection>scm:git:git@github.com:bbaron/acme-istore.git</connection>
+    <developerConnection>scm:git:git@github.com:bbaron/acme-istore.git</developerConnection>
+    <url>https://github.com/bbaron/acme-istore</url>
+  </scm>
   <name>istore</name>
 
   <properties>
@@ -28,29 +33,29 @@
       <version>4.8.2</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${slf4j.version}</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.14</version>
-        <scope>runtime</scope>
-      </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.14</version>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>

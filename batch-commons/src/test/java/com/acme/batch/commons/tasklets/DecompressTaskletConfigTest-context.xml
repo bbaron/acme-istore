@@ -6,7 +6,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
   <context:component-scan base-package="com.acme.batch.commons.tasklets" />
-  <import resource="classpath:test-context.xml"/>
+  <context:component-scan base-package="com.acme.batch.commons.config" use-default-filters="false">
+    <context:include-filter type="annotation" expression="com.acme.batch.commons.annotations.TestOnly"/>
+  </context:component-scan>
   <job id="unzip-job" xmlns="http://www.springframework.org/schema/batch">
     <step id="unzip">
       <tasklet ref="decompressTasklet"/>
