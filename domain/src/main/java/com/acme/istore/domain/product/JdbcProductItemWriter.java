@@ -5,6 +5,8 @@ package com.acme.istore.domain.product;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -18,8 +20,8 @@ public class JdbcProductItemWriter implements ItemWriter<Product> {
 
     private JdbcTemplate jdbcTemplate;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override

@@ -9,7 +9,7 @@
 
   <import resource="classpath:data-source-embedded.xml"/>
   <bean id="writer" class="com.acme.istore.domain.product.JdbcProductItemWriter">
-    <property name="jdbcTemplate" ref="jdbcTemplate" />
+    <property name="dataSource" ref="dataSource" />
   </bean>
 
 </beans>
